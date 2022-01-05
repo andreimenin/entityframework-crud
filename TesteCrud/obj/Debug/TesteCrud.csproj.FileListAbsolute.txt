@@ -233,3 +233,4 @@ C:\Users\And\Desktop\MVCCRUD - Teste\TesteCrud\TesteCrud\obj\Debug\TesteCrud.csp
 C:\Users\And\Desktop\MVCCRUD - Teste\TesteCrud\TesteCrud\obj\Debug\TesteCrud.csproj.CopyComplete
 C:\Users\And\Desktop\MVCCRUD - Teste\TesteCrud\TesteCrud\obj\Debug\TesteCrud.dll
 C:\Users\And\Desktop\MVCCRUD - Teste\TesteCrud\TesteCrud\obj\Debug\TesteCrud.pdb
+C:\Users\And\Desktop\MVCCRUD - Teste\TesteCrud\TesteCrud\obj\Debug\TesteCrud.csprojAssemblyReference.cache
