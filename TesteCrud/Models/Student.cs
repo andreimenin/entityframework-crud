@@ -11,11 +11,15 @@ namespace TesteCrud.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+
     public partial class Student
     {
         public int StudentID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Department { get; set; }
         public string Semester { get; set; }
         public Nullable<int> Age { get; set; }
