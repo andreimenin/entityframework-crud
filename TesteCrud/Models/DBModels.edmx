@@ -4,55 +4,52 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MvcCRUDDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Students">
+      <Schema Namespace="pessoa_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pessoas">
           <Key>
-            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="Codigo" />
           </Key>
-          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Department" Type="varchar" MaxLength="50" />
-          <Property Name="Semester" Type="varchar" MaxLength="50" />
-          <Property Name="Age" Type="int" />
-          <Property Name="Fees" Type="int" />
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Idade" Type="int" Nullable="false" />
+          <Property Name="Nascimento" Type="date" />
+          <Property Name="Ativo" Type="bit" />
         </EntityType>
-        <EntityContainer Name="MvcCRUDDBModel1StoreContainer">
-          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="pessoa_dbModelStoreContainer">
+          <EntitySet Name="Pessoas" EntityType="Self.Pessoas" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MvcCRUDDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Student">
+      <Schema Namespace="pessoa_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pessoa">
           <Key>
-            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="Codigo" />
           </Key>
-          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="Fees" Type="Int32" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Idade" Type="Int32" Nullable="false" />
+          <Property Name="Nascimento" Type="DateTime" Precision="0" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Pessoas" EntityType="Self.Pessoa" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MvcCRUDDBModel1StoreContainer" CdmEntityContainer="DBModel">
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="MvcCRUDDBModel1.Student">
-              <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Semester" ColumnName="Semester" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Fees" ColumnName="Fees" />
+        <EntityContainerMapping StorageEntityContainer="pessoa_dbModelStoreContainer" CdmEntityContainer="DBModel">
+          <EntitySetMapping Name="Pessoas">
+            <EntityTypeMapping TypeName="pessoa_dbModel.Pessoa">
+              <MappingFragment StoreEntitySet="Pessoas">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Idade" ColumnName="Idade" />
+                <ScalarProperty Name="Nascimento" ColumnName="Nascimento" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

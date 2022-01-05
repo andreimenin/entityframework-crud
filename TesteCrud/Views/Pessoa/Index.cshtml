@@ -1,20 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Student List";
+    ViewBag.Title = "Pessoas";
 }
 
-<h2>Student Record</h2>
+<h2>Pessoas</h2>
 
-<a class="btn btn-primary" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("StoreOrEdit","Student")')"><i class="fa fa-plus"></i>Add New</a>
+<a class="btn btn-primary" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("StoreOrEdit","Pessoa")')"><i class="fa fa-plus"></i>Adicionar</a>
 
-<table id="StudentTable" class="table table-striped table-bordered" style="width:100%">
+<table id="PessoaTable" class="table table-striped table-bordered" style="width:100%">
 
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Semester</th>
-            <th>Age</th>
-            <th>Fees</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Nascimento</th>            
             <th></th>
         </tr>
     </thead>
@@ -30,29 +28,35 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
 
     <script>
+        
 
         var Popup, dataTable;
 
         $(document).ready(function () {
-            dataTable =  $("#StudentTable").DataTable({
+            dataTable =  $("#PessoaTable").DataTable({
 
                 "ajax": {
 
-                    "url": "/Student/GetData",
+                    "url": "/Pessoa/GetData",
                     "type": "GET",
                     "datatype": "json"
                 },
 
                 "columns": [
-                    { "data": "Name" },
-                    { "data": "Department" },
-                    { "data": "Semester" },
-                    { "data": "Age" },
-                    { "data": "Fees" },
+                    { "data": "Nome" },
+                    { "data": "Idade" },
+                    { "data": "Nascimento",
+                        "render": function (data) {
+                            var dtStart = new Date(parseInt(data.substr(6)));
+                            // Format using moment.js.
+                            var dtStartWrapper = moment(dtStart);
+                            return dtStartWrapper.format("dd/MM/yyyy");
+                        }
+                    },                    
                     {
-                        "data": "StudentID", "render": function (data) {
+                        "data": "Codigo", "render": function (data) {
 
-                            return "<a class='btn btn-secondary btn-sm' onclick=PopupForm('@Url.Action("StoreOrEdit","Student")/" + data + "')><i class='fa fa-pencil'></i>Edit</a> <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i>Delete</a>";
+                            return "<a class='btn btn-secondary btn-sm' onclick=PopupForm('@Url.Action("StoreOrEdit","Pessoa")/" + data + "')><i class='fa fa-pencil'></i>Edit</a> <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i>Delete</a>";
                         },
 
                         "orderable": false,
@@ -82,7 +86,7 @@
 
                         autoOpen : true,
                         resizable : false,
-                        title : 'Fill Student Details',
+                        title : 'Cadastro de Pessoa',
                         height : 500,
                         width : 700,
                         close: function () {
@@ -127,12 +131,12 @@
         }
 
         function Delete(id) {
-            if (confirm('Are you sure to Delete this record ?')) {
+            if (confirm('Tem certeza que deseja excluir esse registro ?')) {
 
                 $.ajax({
 
                     type: "POST",
-                    url: '@Url.Action("Delete","Student")/' + id,
+                    url: '@Url.Action("Delete","Pessoa")/' + id,
                     success: function (data) {
 
                         if (data.success) {

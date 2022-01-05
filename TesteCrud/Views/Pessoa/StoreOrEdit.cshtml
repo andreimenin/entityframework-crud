@@ -1,0 +1,33 @@
+﻿@model TesteCrud.Models.Pessoa
+@{
+    /**/
+
+    Layout = null;
+}
+
+@using (Html.BeginForm("StoreOrEdit", "Pessoa", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.HiddenFor(model => model.Codigo)
+
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Nome, new { @class = "form-label" })
+        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Idade, new { @class = "form-label" })
+        @Html.EditorFor(model => model.Idade, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Nascimento, new { @class = "form-label" })
+        @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control", @type = "date"} })
+        @Html.ValidationMessageFor(model => model.Nascimento)
+    </div>
+
+    <div class="mb-1">
+        <input type="submit" value="Salvar" class="btn btn-success" />
+        <input type="reset" value="Limpar" class="btn btn-warning mr-2" />
+    </div>
+}  

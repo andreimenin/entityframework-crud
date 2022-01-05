@@ -14,15 +14,16 @@ namespace TesteCrud.Models
     using System.ComponentModel.DataAnnotations;
 
 
-    public partial class Student
+    public partial class Pessoa
     {
-        public int StudentID { get; set; }
+        public int Codigo { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string Nome { get; set; }
         [Required]
-        public string Department { get; set; }
-        public string Semester { get; set; }
-        public Nullable<int> Age { get; set; }
-        public Nullable<int> Fees { get; set; }
+        public int Idade { get; set; }
+        [DataType(DataType.Date, ErrorMessage = "Apenas data")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<DateTime> Nascimento { get; set; }
+        public bool Ativo { get; set; }
     }
 }

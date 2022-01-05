@@ -25,6 +25,6 @@ namespace TesteCrud.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Pessoa> Pessoas { get; set; }
     }
 }
